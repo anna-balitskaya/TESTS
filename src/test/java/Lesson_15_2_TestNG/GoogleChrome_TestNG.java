@@ -1,4 +1,4 @@
-package Lesson_15_TestNG;
+package Lesson_15_2_TestNG;
 
 /*
 Test сase

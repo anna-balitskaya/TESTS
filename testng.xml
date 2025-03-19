@@ -71,7 +71,7 @@
                     <include name="testTriangleSquare_SideAZero"/>
                 </methods>
             </class>
-            <class name="Lesson_15_Junit5.GoogleChrome_Junit5">
+            <class name="Lesson_15_2_Junit5.GoogleChrome_Junit5">
                 <methods>
                     <include name="MethodOrder"/>
                     <include name="goToLink"/>
@@ -85,7 +85,7 @@
                     <include name="payButtonClick"/>
                 </methods>
             </class>
-            <class name="Lesson_15_TestNG.GoogleChrome_TestNG">
+            <class name="Lesson_15_2_TestNG.GoogleChrome_TestNG">
                 <methods>
                     <include name="goToLink"/>
                 </methods>

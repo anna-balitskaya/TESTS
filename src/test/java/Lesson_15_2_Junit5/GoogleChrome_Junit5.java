@@ -1,4 +1,4 @@
-package Lesson_15_Junit5;
+package Lesson_15_2_Junit5;
 
 /*
 Test сase
