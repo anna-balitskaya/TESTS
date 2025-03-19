@@ -13,8 +13,6 @@ Test сase
  */
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,11 +24,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GoogleChrome_TestNG {
@@ -74,7 +70,7 @@ public class GoogleChrome_TestNG {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement payWrapper = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("pay__wrapper")));
         WebElement header = payWrapper.findElement(By.tagName("h2"));
-        assertEquals("Онлайн пополнение\nбез комиссии", header.getText().trim(), "Текст заголовка не совпадает.");
+        assertEquals("Онлайн пополнение\nбез комиссии", header.getText().trim(), "Текст заголовка не совпадает");
     }
 
     @Test(description = "Проверка логотипов платежных систем")
