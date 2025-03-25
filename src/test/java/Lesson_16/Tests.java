@@ -1,11 +1,13 @@
 package Lesson_16;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -28,6 +30,7 @@ public class Tests {
 
         driver = new ChromeDriver();
         driver.get("https://www.mts.by/");
+        driver.manage().window().maximize();
 
         homePage = new HomePage(driver);
         paymentPage = new PaymentPage(driver);
@@ -42,16 +45,30 @@ public class Tests {
         }
     }
 
-    @DisplayName("Проверка названия блока \"Онлайн пополнение без комиссии\"")
     @Test
+    @Owner("Anna")
+    @DisplayName("Проверка названия блока \"Онлайн пополнение без комиссии\"")
+    @Step("Проверка названия блока \"Онлайн пополнение без комиссии\"")
+    @Description("Тест проверяет корректность названия для блока: \"Онлайн пополнение без комиссии\"")
+    @Severity(SeverityLevel.MINOR)
+    @Feature("Онлайн пополнение без комиссии")
+   // @Attachment(value = "Скриншот", type = "image/png")
     void checkBlockName() {
         WebElement payWrapper = driver.findElement(By.className("pay__wrapper"));
         WebElement header = payWrapper.findElement(By.tagName("h2"));
         assertEquals("Онлайн пополнение\nбез комиссии", header.getText().trim(), "Текст заголовка не совпадает");
+
     }
 
-    @DisplayName("Проверка логотипов платежных систем")
     @Test
+    @Owner("Anna")
+    @DisplayName("Проверка логотипов платежных систем")
+    @Step("Проверка логотипов платежных систем")
+    @Description("Тест проверяет корректность отображения логотипов Проверка логотипов платежных систем для формы ввода личной информации")
+    @Severity(SeverityLevel.MINOR)
+    @Feature("Онлайн пополнение без комиссии")
+   // @Attachment(value = "Скриншот", type = "image/png")
+
     void checkLogos() {
         List<WebElement> logos = driver.findElements(By.cssSelector(".pay__partners img"));
         String[] expectedAltValues = {"Visa", "Verified By Visa", "MasterCard", "MasterCard Secure Code", "Белкарт"};
@@ -61,8 +78,14 @@ public class Tests {
         }
     }
 
-    @DisplayName("Проверка ссылки \"Подробнее о сервисе\"")
     @Test
+    @Owner("Anna")
+    @DisplayName("Проверка ссылки \"Подробнее о сервисе\"")
+    @Step("Проверка ссылки \"Подробнее о сервисе\"")
+    @Description("Тест проверяет кликабельность ссылки и перенаправление на сайт: https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/")
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Онлайн пополнение без комиссии")
+   // @Attachment(value = "Скриншот", type = "image/png")
     void checkLink() {
         WebElement link = driver.findElement(By.linkText("Подробнее о сервисе"));
         String href = link.getAttribute("href");
@@ -70,8 +93,14 @@ public class Tests {
         assertEquals(expectedHref, href, "Некорректный URL");
     }
 
-    @DisplayName("Заполнение поля \"Номер телефона\"")
     @Test
+    @Owner("Anna")
+    @DisplayName("\"Заполнение поля \"Номер телефона\"")
+    @Step("\"Заполнение поля \"Номер телефона\"")
+    @Description("Тест проверяет возможность ввода номера телевона и корректность отображения ранее введенного значения в поле \"Номер телефона\"")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Онлайн пополнение без комиссии")
+   // @Attachment(value = "Скриншот", type = "image/png")
     void clickAndEnterPhone() {
         homePage.enterPhone("297777777");
 
@@ -80,8 +109,14 @@ public class Tests {
         assertEquals("297777777", actualValue, "Введенное значение не соответствует ожидаемому");
     }
 
-    @DisplayName("Заполнение поля \"Сумма\"")
     @Test
+    @Owner("Anna")
+    @DisplayName("Заполнение поля \"Сумма\"")
+    @Step("Заполнение поля \"Сумма\"")
+    @Description("Тест проверяет возможность ввода суммы и корректность отображения ранее введенного значения  в поле \"Сумма\"")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Онлайн пополнение без комиссии")
+    //@Attachment(value = "Скриншот", type = "image/png")
     void clickAndEnterSum() {
         homePage.enterSum("15");
 
@@ -90,8 +125,14 @@ public class Tests {
         assertEquals("15", actualValue, "Введенное значение не соответствует ожидаемому");
     }
 
-    @DisplayName("Заполнение поля \"E-mail для отправки чека\"")
     @Test
+    @Owner("Anna")
+    @DisplayName("Заполнение поля \"E-mail для отправки чека\"")
+    @Step("Заполнение поля \"E-mail для отправки чека\"")
+    @Description("Тест проверяет возможность ввода email и корректность отображения ранее введенного значения  в поле \"E-mail для отправки чека\"")
+    @Severity(SeverityLevel.NORMAL)
+    @Feature("Онлайн пополнение без комиссии")
+    //@Attachment(value = "Скриншот", type = "image/png")
     void clickAndEnterEmail() {
         homePage.enterEmail("test123test@gmail.com");
 
@@ -100,8 +141,14 @@ public class Tests {
         assertEquals("test123test@gmail.com", actualValue, "Введенное значение не соответствует ожидаемому");
     }
 
-    @DisplayName("Клик по кнопке \"Продолжить\" и проверка ранее введенных значений на форме оплаты")
     @Test
+    @Owner("Anna")
+    @DisplayName("Клик по кнопке \"Продолжить\" и проверка ранее введенных значений на форме оплаты")
+    @Step("Клик по кнопке \"Продолжить\" и проверка ранее введенных значений на форме оплаты")
+    @Description("Тест проверяет клик по кнопке \"Продолжить\" и проверка ранее введенных значений на форме оплаты")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Онлайн пополнение без комиссии")
+    //@Attachment(value = "Скриншот", type = "image/png")
     void payButtonClickAndCheckValues() {
         String enteredAmount = "15";
         String enteredPhoneNumber = "297777777";
@@ -128,8 +175,14 @@ public class Tests {
         paymentPage.switchToDefaultContent();
     }
 
-    @DisplayName("Проверка плейсхолдеров полей ввода и иконок платежных систем для формы оплаты")
     @Test
+    @Owner("Anna")
+    @DisplayName("Проверка плейсхолдеров полей ввода и иконок платежных систем для формы оплаты")
+    @Step("Проверка плейсхолдеров полей ввода и иконок платежных систем для формы оплаты")
+    @Description("Тест проверяет наличие и корректность отображения плейсхолдеров полей ввода и иконок платежных систем для формы оплаты")
+    @Severity(SeverityLevel.MINOR)
+    @Feature("Онлайн пополнение без комиссии")
+    //@Attachment(value = "Скриншот", type = "image/png")
     void checkFieldsAndIcons() {
 
         String enteredAmount = "15";
@@ -164,8 +217,14 @@ public class Tests {
         assertEquals("Имя держателя (как на карте)", cardHolderNamePlaceholder, "Надпись в поле \"Имя владельца карты\" некорректна");
     }
 
-    @DisplayName("Плейсхолдеры незаполненных полей для: \"Услуги связи\"")
     @Test
+    @Owner("Anna")
+    @DisplayName("Плейсхолдеры незаполненных полей для: \"Услуги связи\"")
+    @Step("Плейсхолдеры незаполненных полей для: \"Услуги связи\"")
+    @Description("Тест проверяет наличие и корректность отображения плейсхолдеров незаполненных полей для: \"Услуги связи\"")
+    @Severity(SeverityLevel.MINOR)
+    @Feature("Онлайн пополнение без комиссии")
+    //@Attachment(value = "Скриншот", type = "image/png")
     void checkPlaceholders() {
         String phonePlaceholder = homePage.getPhoneFieldPlaceholder();
         String sumPlaceholder = homePage.getSumFieldPlaceholder();
@@ -176,8 +235,14 @@ public class Tests {
         assertEquals("E-mail для отправки чека", emailPlaceholder, "Некорректный плейсхолдер для E-mail");
     }
 
-    @DisplayName("Плейсхолдеры незаполненных полей для: \"Домашний интернет\"")
     @Test
+    @Owner("Anna")
+    @DisplayName("Плейсхолдеры незаполненных полей для: \"Домашний интернет\"")
+    @Step("Плейсхолдеры незаполненных полей для: \"Домашний интернет\"")
+    @Description("Тест проверяет наличие и корректность отображения плейсхолдеров незаполненных полей для: \"Домашний интернет\"")
+    @Severity(SeverityLevel.MINOR)
+    @Feature("Онлайн пополнение без комиссии")
+   // @Attachment(value = "Скриншот", type = "image/png")
     void checkPlaceholdersForHomeInternet() {
 
         homePage.clickInternetOption();
@@ -191,8 +256,14 @@ public class Tests {
         assertEquals("E-mail для отправки чека", emailPlaceholder, "Некорректный плейсхолдер для E-mail");
     }
 
-    @DisplayName("Плейсхолдеры незаполненных полей для: \"Рассрочка\"")
     @Test
+    @Owner("Anna")
+    @DisplayName("Плейсхолдеры незаполненных полей для: \"Рассрочка\"")
+    @Step("Плейсхолдеры незаполненных полей для: \"Рассрочка\"")
+    @Description("Тест проверяет наличие и корректность отображения плейсхолдеров незаполненных полей для: \"Рассрочка\"")
+    @Severity(SeverityLevel.MINOR)
+    @Feature("Онлайн пополнение без комиссии")
+    //@Attachment(value = "Скриншот", type = "image/png")
     void checkPlaceholdersForInstallment() {
 
         homePage.clickInstallmentOption();
@@ -206,8 +277,14 @@ public class Tests {
         assertEquals("E-mail для отправки чека", emailPlaceholder, "Некорректный плейсхолдер для E-mail");
     }
 
-    @DisplayName("Плейсхолдеры незаполненных полей для: \"Задолженность\"")
     @Test
+    @Owner("Anna")
+    @DisplayName("Плейсхолдеры незаполненных полей для: \"Задолженность\"")
+    @Step("Плейсхолдеры незаполненных полей для: \"Задолженность\"")
+    @Description("Тест проверяет наличие и корректность отображения плейсхолдеров незаполненных полей для: \"Задолженность\"")
+    @Severity(SeverityLevel.MINOR)
+    @Feature("Онлайн пополнение без комиссии")
+    //@Attachment(value = "Скриншот", type = "image/png")
     void checkPlaceholdersForDebt() {
 
         homePage.clickDebtOption();
@@ -220,6 +297,5 @@ public class Tests {
         assertEquals("Сумма", sumPlaceholder, "Некорректный плейсхолдер для суммы");
         assertEquals("E-mail для отправки чека", emailPlaceholder, "Некорректный плейсхолдер для E-mail");
     }
-
 }
 

@@ -37,7 +37,7 @@ public class PaymentPage {
     private boolean isCardIconVisible(By iconLocator) {
         try {
             WebElement cardIcon = new FluentWait<>(driver)
-                    .withTimeout(Duration.ofSeconds(60))
+                    .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofMillis(100))
                     .ignoring(NoSuchElementException.class)
                     .until(driver -> {
